@@ -1,0 +1,78 @@
+/* @import '../../../node_modules/react-datepicker/src/stylesheets/datepicker.scss'; */
+
+.tablequery-container {
+    height: 90vh;
+}
+
+.test1 {
+    background-color: red;
+    float: left;
+    padding-top: 40vh;
+    padding-bottom: 40vh;
+    text-align: center;
+    width: 30%;
+}
+
+.test2 {
+    background-color: blue;
+    float: right;
+    width: 70%;
+}
+
+.userTableDetails {
+    background-color: white;
+    border: 1px solid black;
+    font-size: 1em;
+    display: inline-block;
+    margin: 0 auto;
+    width: 68%;
+    /* min-width: fit-content; */
+    /* max-width: max-content; */
+    /* height: 1%; */
+    height: min-content;
+}
+
+/* .userTableButton {
+    font-size: 1em;
+    display: inline-block;
+    margin: 0 auto;
+} */
+
+.inputLabel {
+    background-color: rgb(247, 247, 247);
+    border-right: 1px solid black;
+    display: table-cell;
+    float: left;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30%;
+}
+
+.userTableInput {
+    float: right;
+    font-size: 14px;
+    /* width: 68.5%; */
+    width: max-content;
+    height: 30px;
+    justify-content: center;
+    display: flex;
+}
+
+.userTableInputField {
+    border: none;
+    float: left;
+    width: fit-content;
+    outline: none;
+}
+
+.test2 {
+    background-image: url("https://assets.website-files.com/5d82284bd06ccc57c3a19ebc/5d823065708f0fd9d0a30de7_PeppaPig_Prod_1080x1080.jpg");
+    background-size: cover;
+    height: 90vh;
+}
+
+/* .react-datepicker__month-container {
+    width: ;
+} */
