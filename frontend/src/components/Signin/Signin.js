@@ -1,29 +1,58 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import React, { useState }  from 'react';
 import './Signin.css';
 
+//Signin Box
 class Signin extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isSigninOpen: true,
+            isRegisterOpen: false
+        };
+    }
+
+    submitSignin(e) {}
+    
     render() {
         return (
-            <div className='signin-container'>
-                <div className='signin-title'>Sign-In</div>
-                <div>
-                    <label for='email' className='signin-input-label'>Email</label>
-                    <br />
-                    <input type='text' id='email' className='signin-input'/>
-                    <br />
-                    <label for='password' className='signin-input-label'>Password</label>
-                    <br />
-                    <input type='text' id='password' className='signin-input'/>
-                    <br />
-                    <button className='signin-button'>Sign-in</button>
+            <div className = "inner-container">
+                <div className = "header">
+                    <h1> Sign In</h1>
+                </div>
+                
+                <div className = "box">
+                    <div className = "input-group" >
+                        <label htmlFor = "username">Username</label>
+                        <input
+                            type = "text"
+                            name = "username"
+                            className = "login-input"
+                            placeholder = "Username" />
+                    </div>
+
+                    <div className = "input-group">
+                        <label htmlFor = "password">Password</label>
+                        <input
+                            type = "text"
+                            name = "username"
+                            className = "login-input"
+                            placeholder = "Password" />
+                    </div>
+
+                    <button
+                        type = "button"
+                        className = "login-btn"
+                        onClick = {this
+                        .submitSignin
+                        .bind(this)}>Login</button>
+
                     <div>
                         <Link to='/createaccount' className='signin-link'>Create an account</Link>
                     </div>
                 </div>
-
             </div>
-        )
+        );
     }
 }
 
