@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/neriyahbutler/restaurant_app#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
   }
 }
