@@ -20,6 +20,7 @@ class Navbar extends React.Component {
                     <div className='nav-menu'>
                         <Link to='/signin' className='nav-item'>Sign In</Link>
                         <Link to='/reservedtable' className='nav-item'>Reserved Table</Link>
+                        <Link to = '/paymentpage' className = 'nav-item'>Payment Page</Link>
                     </div>
                 </div>
             </nav>
