@@ -1,0 +1,17 @@
+.table-columns {
+    float: left;
+    font-size: 1.1em;
+    font-weight: lighter;
+    width: 50%;
+}
+
+.reserved-tables-date {
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.reserved-tables-display {
+    border: 1px red solid;
+    margin: 0 auto;
+    width: 50%;
+}

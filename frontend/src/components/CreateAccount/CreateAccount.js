@@ -73,6 +73,25 @@ class CreateAccount extends React.Component {
     render() {
         return (
             <div className='createaccount-container'>
+                <nav className='navbar'>
+                    <div className='navbar-container'>
+                        <div className="navbar-logo">
+                            <a href='http://localhost:3000/' className='navbar-logo-link'>
+                                NAME HERE
+                            </a>
+                        </div>
+                        <div className='nav-menu'>
+                            {false !== true && (
+                                <a href='http://localhost:3000/signin' className='nav-item'>
+                                Sign In
+                                </a>
+                            )}
+
+                            <a href='http://localhost:3000/reservedtable' className='nav-item'>Reserved Table</a>
+                        </div>
+                    </div>
+                </nav>
+
                 <div className='createaccount-title'>Create Account</div>
                 <form onSubmit={this.accountSubmit.bind(this)}>
 

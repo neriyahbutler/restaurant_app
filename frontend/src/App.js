@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
-import React, { userContext } from "react";
-
-import logo from './logo.svg';
+import { React, userContext } from "react";
 
 import Navbar from './components/Navbar/Navbar';
 import Signin from './components/Signin/Signin';
@@ -12,10 +10,11 @@ import TableQuery from './components/TableQuery/TableQuery';
 import './App.css';
 
 function App() {
+
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
 
           <Route exact path='/' element={<TableQuery/>}>

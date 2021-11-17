@@ -1,24 +1,85 @@
-import React, { useState } from 'react';
-import DatePicker from "react-datepicker"
-import DateTimePicker from 'react-datetime-picker'
+import { React, useState } from 'react';
+import DateTimePicker from 'react-datetime-picker';
+
+import { useLocation } from 'react-router-dom';
 
 import "react-datepicker/dist/react-datepicker.css";
 import './TableQuery.css';
 
-class TableQuery extends React.Component {
-constructor(props) {
-    super(props);
+const TableQuery1 = () => {
+    const [date, setDate] = useState("")
+    const [peopleCount, setPeopleCount] = useState("")
+    const [logInOption, setLogInOption] = useState("");
 
-    this.state = {
-        fields: {},
-        errors: {},
-        date: ""
+    // var logInOption = "Sign In"
+    var { state } = useLocation()
+    console.log(state)
+    
+    // setLogInOption("Sign In")
+
+    function changeLoggedInStatus() {
+        console.log(`Status was ${state.isLoggedIn}`)
+        if (state !== null) {
+            if (state.isLoggedIn === true) {
+                state.isLoggedIn = false
+                setLogInOption("Sign In")
+            }
+            else {
+                state.isLoggedIn = true
+                setLogInOption("Sign Out")
+            }
+        }
+        console.log(`Status is now ${state.isLoggedIn}`)
     }
-}
 
-    render() {
-        return (
-            <div className='tablequery-container'>
+    return (
+        <div className='tablequery-container'>
+
+            <nav className='navbar'>
+                <div className='navbar-container'>
+                    <div className="navbar-logo">
+                        <a href='http://localhost:3000/' className='navbar-logo-link'>
+                            NAME HERE
+                        </a>
+                    </div>
+                    <div className='nav-menu'>
+                        { state !== null && (
+                            state.isLoggedIn === true && (
+                            <div className='nav-item' onClick={changeLoggedInStatus}>
+                            Sign Out
+                            </div>
+                            )
+                        )}
+
+                        { state !== null && (
+                            state.isLoggedIn !== true && (
+                                <a href='http://localhost:3000/signin' className='nav-item'>
+                                    Sign In
+                                </a>
+                            )
+                        )}
+
+                        {state === null && (
+                            <a href='http://localhost:3000/signin' className='nav-item'>
+                            Sign In
+                            </a>
+                        )}
+    
+                        
+                        <a href='http://localhost:3000/reservedtable' className='nav-item'>Reserved Table</a>
+                    </div>
+                </div>
+            </nav>
+
+                {state !== null && (
+                    state.isLoggedIn === true && (
+                        <div>
+                            Welcome, {state.firstName}!
+                        </div>
+                    )
+                )
+                }
+
                 <div className='test1'>
                     <div>
                     Resturant name here
@@ -36,7 +97,7 @@ constructor(props) {
                     <div className='userTableDetails'>
                         <div className='inputLabel'>When?</div>
                         <div className='userTableInput'>
-                            <DateTimePicker selected={this.state.date} onChange={(date_input) => this.setState({date: date_input})} value={this.state.date} />
+                            <DateTimePicker selected={date} onChange={(e) => setDate(e.target.value)} value={date} />
                         </div>
                     </div>
 
@@ -57,8 +118,7 @@ constructor(props) {
                     TEST 2
                 </div>
             </div>
-        )
-    }
+    )
 }
 
-export default TableQuery
+export default TableQuery1;
