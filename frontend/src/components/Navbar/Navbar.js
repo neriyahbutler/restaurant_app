@@ -15,7 +15,7 @@ const Navbar1 = () => {
                     {false !== true && (
                         <Link to='/signin' className='nav-item'>
                         Sign In
-                        </Link>
+                        </Link>                    
                     )}
                     <Link to='/reservedtable' className='nav-item'>Reserved Table</Link>
                 </div>
