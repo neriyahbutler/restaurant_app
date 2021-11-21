@@ -39,13 +39,15 @@ const Signin1 = () => {
                 navigate("/", {state: {
                     token: data.token,
                     firstName: data.firstName,
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                    email: email
                 }})
 
                 navigate("/reservedtable", {state: {
                     token: data.token,
                     firstName: data.firstName,
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                    email: email
                 }})
                 setIsLoggedIn(true)
             }

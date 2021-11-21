@@ -6,7 +6,7 @@ import Signin from './components/Signin/Signin';
 import CreateAccount from './components/CreateAccount/CreateAccount';
 import ReservedTable from './components/ReservedTable/ReservedTable';
 import TableQuery from './components/TableQuery/TableQuery';
-import PaymentPage from './components/PaymentPage/PaymentPage';
+// import PaymentPage from './components/PaymentPage/PaymentPage';
 
 import './App.css';
 
@@ -30,10 +30,9 @@ function App() {
           <Route exact path='/createaccount' element={<CreateAccount/>}>
             <CreateAccount />
           </Route>
-          <Route exact path = '/paymentpage' elemnt = {<PaymentPage/>}>
+          {/* <Route exact path = '/paymentpage' elemnt = {<PaymentPage/>}>
             <PaymentPage/>
-          </Route>
-
+          </Route> */}
         </Routes>
       </Router>
     </div>

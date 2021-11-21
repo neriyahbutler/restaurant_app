@@ -1,7 +1,9 @@
 import { React, useState } from 'react';
 import DateTimePicker from 'react-datetime-picker';
 
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+import Popup from '../Popup/Popup';
 
 import "react-datepicker/dist/react-datepicker.css";
 import './TableQuery.css';
@@ -10,13 +12,17 @@ const TableQuery1 = () => {
     const [date, setDate] = useState("")
     const [peopleCount, setPeopleCount] = useState("")
     const [logInOption, setLogInOption] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
 
-    // var logInOption = "Sign In"
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
+
+    const navigate = useNavigate();
+
     var { state } = useLocation()
     console.log(state)
     
-    // setLogInOption("Sign In")
-
     function changeLoggedInStatus() {
         console.log(`Status was ${state.isLoggedIn}`)
         if (state !== null) {
@@ -30,6 +36,20 @@ const TableQuery1 = () => {
             }
         }
         console.log(`Status is now ${state.isLoggedIn}`)
+    }
+
+    function handleState() {
+        if (state !== null)
+        {
+            navigate("/reservedtable", {
+                state: {
+                    token: state.token,
+                    firstName: state.firstName,
+                    isLoggedIn: state.isLoggedIn,
+                    email: state.email
+                }
+            })
+        }
     }
 
     return (
@@ -66,7 +86,7 @@ const TableQuery1 = () => {
                         )}
     
                         
-                        <a href='http://localhost:3000/reservedtable' className='nav-item'>Reserved Table</a>
+                        <a href='http://localhost:3000/reservedtable' className='nav-item' onClick={handleState}>Reserved Table</a>
                     </div>
                 </div>
             </nav>
@@ -111,12 +131,16 @@ const TableQuery1 = () => {
                     </div>
 
                     <div className='userTableButton'>
-                        <button>Find Table</button>
+                        <button onClick={togglePopup}>Find Table</button>
                     </div>
                 </div>
                 <div className='test2'>
                     TEST 2
                 </div>
+                {isOpen && <Popup 
+                    content={<><b>Test</b></>}
+                handleClose={togglePopup}
+                />}
             </div>
     )
 }

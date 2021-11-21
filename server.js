@@ -21,4 +21,5 @@ connection.once('open', () => {
 app.use("/newaccount/", require("./routes/createAccountRouter"))
 app.use("/createaccount/", require("./routes/createAccountRouter"))
 app.use("/signin/", require("./routes/signinRouter"))
+app.use("/reservedtable/", require("./routes/reservedTablesRouter"))
 module.exports = app;
