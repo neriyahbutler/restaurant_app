@@ -23,6 +23,7 @@ const SelectTables = () => {
     const [table8Select, setTable8Select] = useState("table-option")
 
     const [selectedTableDetails, setSelectedTableDetails] = useState("")
+    const [selectedTables, setSelectedTables] = useState([])
 
     const displayTableInfo = async (tableNumber) => {
         console.log("The table chosen is table number", tableNumber)
@@ -37,46 +38,75 @@ const SelectTables = () => {
         }).then(response => response.json())
         .then(data => {
             console.log(data)
+
             setSelectedTableDetails(data)
             handleTableStates(tableNumber)
-            
         })
     }
 
+    function handleTableCart(tableNumber, isAddingTable) {
+        
+        var tableCart = selectedTables
+
+        if (isAddingTable) {
+            tableCart.push(tableNumber)
+            console.log("Array is", selectedTables)
+        } else {
+            let index = tableCart.indexOf(tableNumber)
+            if (index !== -1) {
+                tableCart.splice(index, 1)
+                console.log("Array is", selectedTables)
+            }
+        }
+        setSelectedTables(tableCart)
+    }
+
     function handleTableStates(tableNumber) {
+        var isAddingTable = false
+        
         if (tableNumber === 1) {
             if (table1Select !== 'table-selected') {
                 setTable1Select('table-selected')
+                isAddingTable = true
             } else {setTable1Select('table-option')}
         } else if (tableNumber === 2) {
             if (table2Select !== 'table-selected') {
                 setTable2Select('table-selected')
+                isAddingTable = true
             } else {setTable2Select('table-option')}
         } else if (tableNumber === 3) {
             if (table3Select !== 'table-selected') {
                 setTable3Select('table-selected')
+                isAddingTable = true
             } else {setTable3Select('table-option')}
         } else if (tableNumber === 4) {
             if (table4Select !== 'table-selected') {
                 setTable4Select('table-selected')
+                isAddingTable = true
             } else {setTable4Select('table-option')}
         } else if (tableNumber === 5) {
             if (table5Select !== 'table-selected') {
                 setTable5Select('table-selected')
+                isAddingTable = true
             } else {setTable5Select('table-option')}
         } else if (tableNumber === 6) {
             if (table6Select !== 'table-selected') {
                 setTable6Select('table-selected')
+                isAddingTable = true
             } else {setTable6Select('table-option')}
         } else if (tableNumber === 7) {
             if (table7Select !== 'table-selected') {
                 setTable7Select('table-selected')
+                isAddingTable = true
             } else {setTable7Select('table-option')}
         } else {
             if (table8Select !== 'table-selected') {
                 setTable8Select('table-selected')
+                isAddingTable = true
             } else {setTable8Select('table-option')}
         }
+
+        handleTableCart(tableNumber, isAddingTable)
     }
 
     return (
@@ -136,6 +166,11 @@ const SelectTables = () => {
                 </div>
                 )
             }
+            </div>
+            <div>
+                Tables in Cart:
+                {selectedTables.map((table) => 
+                    <div>Table {table}</div>)}
             </div>
         </div>
         </div>
