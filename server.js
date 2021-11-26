@@ -18,8 +18,10 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully")
 })
 
+app.use("/tablequery/", require("./routes/tableQueryRouter"))
 app.use("/newaccount/", require("./routes/createAccountRouter"))
 app.use("/createaccount/", require("./routes/createAccountRouter"))
 app.use("/signin/", require("./routes/signinRouter"))
 app.use("/reservedtable/", require("./routes/reservedTablesRouter"))
+app.use("/selecttables/", require("./routes/selectTableRouter"))
 module.exports = app;

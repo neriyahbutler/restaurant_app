@@ -1,3 +1,24 @@
+.createaccount-button {
+    margin-top: 5%;
+}
+
+.createaccount-row {
+    margin: 0 auto;
+}
+
+.signin-box {
+    border: 1px solid lightgrey;
+    padding: 4%;
+    margin: 0 auto;
+    margin-top: 5%;
+    width: 50%;
+}
+
+.form-input {
+    float: left;
+    margin-bottom: 5%;
+}
+
 .signin-container {
     padding: 25vh;
 }
@@ -23,6 +44,22 @@
     width: 25%;
 }
 
+.signin-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-bottom: 2%;
+}
+
 .signin-link {
     text-decoration: none;
+}
+
+.input-group {
+    margin: 0 auto;
+    margin-bottom: 2%;
+    width: min-content;
+}
+
+.login-btn {
+    margin-bottom: 2%;
 }

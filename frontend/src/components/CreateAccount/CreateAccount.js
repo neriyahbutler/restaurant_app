@@ -94,104 +94,105 @@ class CreateAccount extends React.Component {
 
                 <div className='createaccount-title'>Create Account</div>
                 <form onSubmit={this.accountSubmit.bind(this)}>
+                    <div className='createaccount-box'>
+                        <div className='createaccount-row'>
+                            <div className='createaccount-row1'>
+                                <label for='firstName' className='createaccount-input'>
+                                    <div className='input-label'>
+                                        First Name
+                                    </div>
+                                </label>
+                                <label for='lastName' className='createaccount-input'>
+                                    <div className='input-label'>
+                                        Last Name
+                                    </div>
+                                </label>
+                            </div>
+                            <div className='createaccount-row1'>
+                                <div className='input-column'>
+                                    <div className='input-label'>
+                                        <input type='text' id='firstName' className='createaccount-input' onChange={this.handleChange.bind(this, "firstName")}></input>
+                                    </div>
+                                </div>
+                                <div className='input-column'>
+                                    <input type='text' id='lastName' className='createaccount-input' onChange={this.handleChange.bind(this, "lastName")}></input>
+                                </div>
+                            </div>
+                            <div className='createaccount-row1'>
+                                <div className='input-column'>
+                                    <div className='input-error' id='error_firstName'>
+                                        {this.state.errors["firstName"]}    
+                                    </div>
+                                    <div className='input-error' id='error_lastName'>
+                                        {this.state.errors["lastName"]}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className='createaccount-row'>
+                            <div className='createaccount-row1'>
+                                <label for='phoneNumber' className='createaccount-input'>
+                                    <div className='input-label'>
+                                        Phone Number
+                                    </div>
+                                </label>
+                                <label for='email' className='createaccount-input'>
+                                    <div className='input-label'>
+                                        Email Address
+                                    </div>
+                                </label>
+                            </div>
 
-                    <div className='createaccount-row'>
-                        <div className='createaccount-row1'>
-                            <label for='firstName' className='createaccount-input'>
-                                <div className='input-label'>
-                                    First Name
+                            <div className='createaccount-row1'>
+                                <div className='input-column'>
+                                    <div className='input-label'>
+                                        <input type='text' id='phoneNumber' className='createaccount-input' onChange={this.handleChange.bind(this, "phoneNumber")}></input>
+                                    </div>
                                 </div>
-                            </label>
-                            <label for='lastName' className='createaccount-input'>
-                                <div className='input-label'>
-                                    Last Name
+                                <div className='input-column'>
+                                    <input type='text' id='email' className='createaccount-input' onChange={this.handleChange.bind(this, "email")}></input>
                                 </div>
-                            </label>
+                            </div>
+
+                            <div className='createaccount-row1'>
+                                <div className='input-column'>
+                                    <div className='input-error' id='error_phoneNumber'>
+                                        {this.state.errors["phoneNumber"]}
+                                    </div>
+                                    <div className='input-error' id='error_email'>
+                                        {this.state.errors["email"]}
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div className='createaccount-row1'>
                             <div className='input-column'>
-                                <div className='input-label'>
-                                    <input type='text' id='firstName' className='createaccount-input' onChange={this.handleChange.bind(this, "firstName")}></input>
-                                </div>
-                            </div>
-                            <div className='input-column'>
-                                <input type='text' id='lastName' className='createaccount-input' onChange={this.handleChange.bind(this, "lastName")}></input>
+                                <label for='password' className='createaccount-input'>
+                                    <div className='input-label'>
+                                        Create Password
+                                    </div>
+                                </label>
                             </div>
                         </div>
+
                         <div className='createaccount-row1'>
                             <div className='input-column'>
-                                <div className='input-error' id='error_firstName'>
-                                    {this.state.errors["firstName"]}    
-                                </div>
-                                <div className='input-error' id='error_lastName'>
-                                    {this.state.errors["lastName"]}
+                                <input type='text' id='password' className='createaccount-input' onChange={this.handleChange.bind(this, "password")}></input>
+                            </div>
+                        </div>
+
+                        <div className='createaccount-row1'>
+                            <div className='input-column'>
+                                <div className='input-error' id='error_password'>
+                                    {this.state.errors["password"]}
                                 </div>
                             </div>
                         </div>
+
+                        <button className='createaccount-button' value='submit'>Create Account</button>
                     </div>
-                    
-                    <div className='createaccount-row'>
-                        <div className='createaccount-row1'>
-                            <label for='phoneNumber' className='createaccount-input'>
-                                <div className='input-label'>
-                                    Phone Number
-                                </div>
-                            </label>
-                            <label for='email' className='createaccount-input'>
-                                <div className='input-label'>
-                                    Email Address
-                                </div>
-                            </label>
-                        </div>
-
-                        <div className='createaccount-row1'>
-                            <div className='input-column'>
-                                <div className='input-label'>
-                                    <input type='text' id='phoneNumber' className='createaccount-input' onChange={this.handleChange.bind(this, "phoneNumber")}></input>
-                                </div>
-                            </div>
-                            <div className='input-column'>
-                                <input type='text' id='email' className='createaccount-input' onChange={this.handleChange.bind(this, "email")}></input>
-                            </div>
-                        </div>
-
-                        <div className='createaccount-row1'>
-                            <div className='input-column'>
-                                <div className='input-error' id='error_phoneNumber'>
-                                    {this.state.errors["phoneNumber"]}
-                                </div>
-                                <div className='input-error' id='error_email'>
-                                    {this.state.errors["email"]}
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className='createaccount-row1'>
-                        <div className='input-column'>
-                            <label for='password' className='createaccount-input'>
-                                <div className='input-label'>
-                                    Create Password
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div className='createaccount-row1'>
-                        <div className='input-column'>
-                            <input type='text' id='password' className='createaccount-input' onChange={this.handleChange.bind(this, "password")}></input>
-                        </div>
-                    </div>
-
-                    <div className='createaccount-row1'>
-                        <div className='input-column'>
-                            <div className='input-error' id='error_password'>
-                                {this.state.errors["password"]}
-                            </div>
-                        </div>
-                    </div>
-
-                    <button value='submit'>Create Account</button>
                 </form>
             </div>
         )

@@ -5,10 +5,10 @@
 }
 
 .test1 {
-    background-color: red;
+    /* background-color: red; */
     float: left;
-    padding-top: 40vh;
-    padding-bottom: 40vh;
+    padding-top: 30vh;
+    /* padding-bottom: 40vh; */
     text-align: center;
     width: 30%;
 }
@@ -23,7 +23,7 @@
     background-color: white;
     border: 1px solid black;
     font-size: 1em;
-    display: inline-block;
+    display: flex;
     margin: 0 auto;
     width: 68%;
     /* min-width: fit-content; */
@@ -32,11 +32,14 @@
     height: min-content;
 }
 
-/* .userTableButton {
-    font-size: 1em;
+.userTableButton {
+    font-size: 0.5em;
     display: inline-block;
+    transform: scale(1.1);
     margin: 0 auto;
-} */
+    margin-top: 5%;
+    padding: 1%;
+}
 
 .inputLabel {
     background-color: rgb(247, 247, 247);
@@ -48,6 +51,12 @@
     line-height: 30px;
     text-align: center;
     width: 30%;
+}
+
+.userTableButton {
+    font-size: 0.5em;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .userTableInput {
@@ -71,6 +80,17 @@
     background-image: url("https://assets.website-files.com/5d82284bd06ccc57c3a19ebc/5d823065708f0fd9d0a30de7_PeppaPig_Prod_1080x1080.jpg");
     background-size: cover;
     height: 90vh;
+}
+
+.restaurant-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.restaurant-subbody {
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 5%
 }
 
 /* .react-datepicker__month-container {

@@ -20,7 +20,15 @@ router.post("/newaccount", async (req, res) => {
             email,
             password
         })
+
+        const formInput2 = new accountTablesModel2({
+        email: email,
+            reserved_tables: []
+        })
+
         const formInputSaved = await formInput.save()
+        const formInputSaved2 = await formInput2.save()
+
         console.log("Input uploaded to database")
     } catch(err) {console.log(err.message)}
 })
@@ -29,29 +37,6 @@ router.get("/", async (req, res) => {
     console.log("Backend connected!")
 
     try {
-        // const formInput = new accountTablesModel({
-        //     email: "neri111@gmail.com",
-        //     reserved_tables: {
-        //         date: "10/09/2021",
-        //         tables: [
-        //             {
-        //                 table: "1",
-        //                 peopleSitting: 10
-        //             },
-        //             {
-        //                 table: "2",
-        //                 peopleSitting: 12
-        //             },
-        //             {
-        //                 table: "3",
-        //                 peopleSitting: 14
-        //             }
-        //         ]
-        //     }
-        // })
-
-        // const formInputSaved = await formInput.save()
-
         const formInputUpdated = new accountTablesModel2({
             email: 'hi',
             reserved_tables: [

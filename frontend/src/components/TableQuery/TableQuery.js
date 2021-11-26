@@ -5,20 +5,36 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import Popup from '../Popup/Popup';
 
+import "../Navbar/Navbar.css"
 import "react-datepicker/dist/react-datepicker.css";
 import './TableQuery.css';
 
 const TableQuery1 = () => {
-    const [date, setDate] = useState("")
-    const [peopleCount, setPeopleCount] = useState("")
+    const [date, setDate] = useState("");
+    const [peopleCount, setPeopleCount] = useState("");
     const [logInOption, setLogInOption] = useState("");
     const [isOpen, setIsOpen] = useState(false);
-
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
-    }
+    const [isHoliday, setIsHoliday] = useState(false)
 
     const navigate = useNavigate();
+
+    const togglePopup = () => {
+        if (isOpen === false) {loadHoliday()}
+        if (isHoliday === true) {
+            console.log("Date chosen is a holiday")
+            setIsOpen(true);
+        } else {
+            setIsOpen(false);
+            navigate('/selecttables/')
+        }
+    }
+
+    const toggleClose = () => {
+        setIsOpen(false)
+        navigate('/selecttables/')
+        // navigate('/createaccount')
+        // use this to navigate to the page where you select the table u want
+    }
 
     var { state } = useLocation()
     console.log(state)
@@ -52,6 +68,32 @@ const TableQuery1 = () => {
         }
     }
 
+    const loadHoliday = async () => {
+        if (date !== "") {
+            const dayInput = {
+                date: date
+            }
+
+            const response = await fetch('http://localhost:5000/tablequery/holidaycheck', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dayInput)
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.isHoliday === true) {
+                    console.log("Setting isHoliday to true")
+                    setIsHoliday(true)
+                } else {
+                    console.log("Setting isHoliday to false")
+                    setIsHoliday(false)
+                }
+            })
+        }
+    } 
+
     return (
         <div className='tablequery-container'>
 
@@ -59,7 +101,7 @@ const TableQuery1 = () => {
                 <div className='navbar-container'>
                     <div className="navbar-logo">
                         <a href='http://localhost:3000/' className='navbar-logo-link'>
-                            NAME HERE
+                            GROUP 8 RESTAURANT
                         </a>
                     </div>
                     <div className='nav-menu'>
@@ -101,15 +143,15 @@ const TableQuery1 = () => {
                 }
 
                 <div className='test1'>
-                    <div>
-                    Resturant name here
+                    <div className='restaurant-title'>
+                    Group 8's Restaurant
                     </div>
 
                     <br/>
                     <br/>
 
-                    <div>
-                    Sub-body here
+                    <div className='restaurant-subbody'>
+                    What kind of table are you looking to reserve?
                     </div>
 
                     <br/>
@@ -117,7 +159,7 @@ const TableQuery1 = () => {
                     <div className='userTableDetails'>
                         <div className='inputLabel'>When?</div>
                         <div className='userTableInput'>
-                            <DateTimePicker selected={date} onChange={(e) => setDate(e.target.value)} value={date} />
+                            <DateTimePicker selected={date} onChange={(e) => setDate(e)} value={date} />
                         </div>
                     </div>
 
@@ -131,15 +173,18 @@ const TableQuery1 = () => {
                     </div>
 
                     <div className='userTableButton'>
-                        <button onClick={togglePopup}>Find Table</button>
+                        <button className='tableQueryButton' onClick={togglePopup}>Find Table</button>
                     </div>
                 </div>
                 <div className='test2'>
-                    TEST 2
+                    
                 </div>
+
                 {isOpen && <Popup 
-                    content={<><b>Test</b></>}
-                handleClose={togglePopup}
+                    content={<>
+                        <b>The date that you have chosen is a holiday. At the payment page, you will be charged an extra fee of $4.20.</b>
+                    </>}
+                handleClose={toggleClose}
                 />}
             </div>
     )

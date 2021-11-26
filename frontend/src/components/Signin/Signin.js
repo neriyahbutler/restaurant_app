@@ -2,6 +2,8 @@ import React, { useState, useContext, Link } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import './Signin.css';
+
 const Signin1 = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -63,7 +65,7 @@ const Signin1 = () => {
                 <div className='navbar-container'>
                     <div className="navbar-logo">
                         <a href='http://localhost:3000/' className='navbar-logo-link'>
-                            NAME HERE
+                        GROUP 8 RESTAURANT
                         </a>
                     </div>
                     <div className='nav-menu'>
@@ -78,13 +80,15 @@ const Signin1 = () => {
                 </div>
             </nav>
 
-            <div className = "header">
-                <h1> Sign In</h1>
-            </div>
+            
             <form onSubmit={submitSignIn}>
-                <div className = "box">
+                <div className="signin-box">
+                    <div className = "signin-header">
+                        Sign In
+                    </div>
+
                     <div className = "input-group" >
-                        <label htmlFor = "username">Username</label>
+                        <label className='form-input' htmlFor = "username">Username</label>
                         <input
                             type = "text"
                             name = "username"
@@ -94,7 +98,7 @@ const Signin1 = () => {
                     </div>
 
                     <div className = "input-group">
-                        <label htmlFor = "password">Password</label>
+                        <label className='form-input' htmlFor = "password">Password</label>
                         <input
                             type = "text"
                             name = "username"

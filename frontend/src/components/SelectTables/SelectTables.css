@@ -1,0 +1,62 @@
+.leftside {
+    border: 1px solid red;
+    float: left;
+    height: 90vh;
+    width: 50%;
+}
+
+.rightside {
+    border: 1px solid blue;
+    float: left;
+    height: 90vh;
+    width: 49%;
+}
+
+.tables-container {
+    /* border: 1px solid yellow; */
+    height: 60%;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 10%;
+    width: 80%;
+}
+
+.tables-columns {
+    /* border: 1px solid black; */
+    display: flex;
+    float: left;
+    height: 25%;
+    text-align: center;
+    vertical-align: middle;
+    width: 49%;
+}
+
+.table-option {
+    border: 1px solid black;
+    height: 80%;
+    margin: auto;
+    vertical-align: middle;
+    width: 90%;
+}
+
+.table-option:hover {
+    border: 1px solid blue;
+}
+
+.table-non-option {
+    background-color: lightgrey;
+    border: 1px solid black;
+    height: 80%;
+    margin: auto;
+    vertical-align: middle;
+    width: 90%;
+}
+
+.table-selected {
+    background-color: lightskyblue;
+    border: 1px solid blue;
+    height: 80%;
+    margin: auto;
+    vertical-align: middle;
+    width: 90%;
+}
