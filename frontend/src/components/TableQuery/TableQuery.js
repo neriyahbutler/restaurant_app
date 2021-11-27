@@ -20,6 +20,9 @@ const TableQuery1 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isHoliday, setIsHoliday] = useState(false)
 
+    var { state } = useLocation()
+    console.log(state)
+
     const navigate = useNavigate();
 
     const togglePopup = () => {
@@ -28,16 +31,30 @@ const TableQuery1 = () => {
             console.log("Date chosen is a holiday")
             setIsOpen(true);
         } else {
-            setIsOpen(false);
-            navigate('/selecttables/', {
-                state: {
-                    date: date,
-                    name: name,
-                    phoneNum: phoneNum,
-                    email: email,
-                    peopleCount: peopleCount
+            setIsOpen(false)
+            if (isOpen === false) {
+                var isLoggedIn = false
+                var email = ""
+                var firstName = ""
+
+                if (state !== null) {
+                    isLoggedIn = state.isLoggedIn;
+                    email = state.email;
+                    firstName = state.firstName;
                 }
-            })        
+
+                navigate('/selecttables/', {
+                    state: {
+                        date: date,
+                        name: name,
+                        phoneNum: phoneNum,
+                        email: email,
+                        peopleCount: peopleCount,
+                        isLoggedIn: isLoggedIn,
+                        firstName: firstName
+                    }
+                })
+            }
         }
     }
 
@@ -62,9 +79,6 @@ const TableQuery1 = () => {
         //     }
         // })
     }
-
-    var { state } = useLocation()
-    console.log(state)
     
     function changeLoggedInStatus() {
         console.log(`Status was ${state.isLoggedIn}`)

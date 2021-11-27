@@ -88,7 +88,7 @@ const Signin1 = () => {
                     </div>
 
                     <div className = "input-group" >
-                        <label className='form-input' htmlFor = "username">Username</label>
+                        <label className='form-input' htmlFor = "username">Email</label>
                         <input
                             type = "text"
                             name = "username"

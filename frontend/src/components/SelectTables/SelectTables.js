@@ -6,14 +6,7 @@ import axios from 'axios';
 import './SelectTables.css'
 
 const SelectTables = () => {
-    const [table1Status, setTable1Status] = useState("")
-    const [table2Status, setTable2Status] = useState("")
-    const [table3Status, setTable3Status] = useState("")
-    const [table4Status, setTable4Status] = useState("")
-    const [table5Status, setTable5Status] = useState("")
-    const [table6Status, setTable6Status] = useState("")
-    const [table7Status, setTable7Status] = useState("")
-    const [table8Status, setTable8Status] = useState("")
+    const [logInOption, setLogInOption] = useState("");
 
     const [table1Select, setTable1Select] = useState("table-option")
     const [table2Select, setTable2Select] = useState("table-option")
@@ -24,13 +17,15 @@ const SelectTables = () => {
     const [table7Select, setTable7Select] = useState("table-option")
     const [table8Select, setTable8Select] = useState("table-option")
 
+    const [forceUpdate, setForceUpdate] = useState(false);
+
     const [selectedTableDetails, setSelectedTableDetails] = useState("")
     const [selectedTables, setSelectedTables] = useState([])
 
     var { state } = useLocation()
+    const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("Shit loaded up nigga")
         if (state !== null) {
             const peopleCountInput = state.peopleCount
 
@@ -141,6 +136,7 @@ const SelectTables = () => {
             }
         }
         setSelectedTables(tableCart)
+        setForceUpdate(!forceUpdate)
     }
 
     function handleTableStates(tableNumber) {
@@ -191,26 +187,96 @@ const SelectTables = () => {
         handleTableCart(tableNumber, isAddingTable)
     }
 
+    function submitCart() {
+        if (selectedTables.count !== 0) {
+            const user_data = {
+                cart : selectedTables,
+                date: state.date,
+                name: state.name,
+                phoneNum: state.phoneNum,
+                email: state.email,
+                phoneCount: state.phoneCount
+            }
+
+            console.log("User is submitting the following json", user_data)
+            // navigate to the payment page
+        }
+    }
+
+    function changeLoggedInStatus() {
+        console.log(`Status was ${state.isLoggedIn}`)
+        if (state !== null) {
+            if (state.isLoggedIn === true) {
+                state.isLoggedIn = false
+                setLogInOption("Sign In")
+            }
+            else {
+                state.isLoggedIn = true
+                setLogInOption("Sign Out")
+            }
+        }
+        console.log(`Status is now ${state.isLoggedIn}`)
+    }
+
+    function handleState() {
+        if (state !== null)
+            {
+                navigate("/", {
+                    state: {
+                        token: state.token,
+                        firstName: state.firstName,
+                        isLoggedIn: state.isLoggedIn,
+                        email: state.email
+                    }
+                })
+            }
+    }
+
     return (
         <div>
             <nav className='navbar'>
                 <div className='navbar-container'>
                     <div className="navbar-logo">
-                        <a href='http://localhost:3000/' className='navbar-logo-link'>
-                        GROUP 8 RESTAURANT
-                        </a>
+                        <a href='http://localhost:3000/' className='navbar-logo-link' onClick={handleState}>
+                        GROUP 8 RESTAURANT                        </a>
                     </div>
                     <div className='nav-menu'>
-                        {false !== true && (
+                        { state !== null && (
+                            state.isLoggedIn === true && (
+                            <div className='nav-item' onClick={changeLoggedInStatus}>
+                                Sign Out
+                            </div>
+                            )
+                        )}
+
+                        { state !== null && (
+                            state.isLoggedIn !== true && (
+                                <a href='http://localhost:3000/signin' className='nav-item'>
+                                    Sign In
+                                </a>
+                            )
+                        )}
+
+                        {state === null && (
                             <a href='http://localhost:3000/signin' className='nav-item'>
                             Sign In
                             </a>
                         )}
-
+    
                         <a href='http://localhost:3000/reservedtable' className='nav-item'>Reserved Table</a>
                     </div>
                 </div>
             </nav>
+
+            {state !== null && (
+                    state.isLoggedIn === true && (
+                        <div>
+                            Welcome, {state.firstName}!
+                        </div>
+                    )
+                )
+                }
+
         <div className='leftside'>
             <div className='tables-container'>
                 <div className='tables-columns'>
@@ -240,19 +306,22 @@ const SelectTables = () => {
             </div>
         </div>
         <div className='rightside'>
-            <div>Table Details</div>
-            <div>
-            {selectedTableDetails !== null && (
-                <div>
-                    {selectedTableDetails.table} holds {selectedTableDetails.peopleSitting} people
-                </div>
-                )
-            }
+            <div className='table-details'>
+                <div>Table Details</div>
+                {selectedTableDetails !== null && (
+                    <div>
+                        {selectedTableDetails.table} holds {selectedTableDetails.peopleSitting} people
+                    </div>
+                    )
+                }
             </div>
-            <div>
+            <div className='table-details'>
                 Tables in Cart:
                 {selectedTables.map((table) => 
                     <div>Table {table}</div>)}
+                
+                <br />
+                <button onClick={submitCart}>Test</button>
             </div>
         </div>
         </div>

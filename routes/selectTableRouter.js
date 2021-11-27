@@ -21,7 +21,7 @@ router.post("/options", async (req, res) => {
         const date = req.body.date
 
         const tableOptions = await selectTableForm.find({})
-        const unavailableTables = await reservedTableHistoryForm.find({})
+        const unavailableTables = await reservedTableHistoryForm.find({date: date})
 
         const query_results = {
             tableOptions : tableOptions,
