@@ -11,7 +11,11 @@ import './TableQuery.css';
 
 const TableQuery1 = () => {
     const [date, setDate] = useState("");
+    const [name, setName] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
+    const [email, setEmail] = useState("");
     const [peopleCount, setPeopleCount] = useState("");
+
     const [logInOption, setLogInOption] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [isHoliday, setIsHoliday] = useState(false)
@@ -25,15 +29,38 @@ const TableQuery1 = () => {
             setIsOpen(true);
         } else {
             setIsOpen(false);
-            navigate('/selecttables/')
+            navigate('/selecttables/', {
+                state: {
+                    date: date,
+                    name: name,
+                    phoneNum: phoneNum,
+                    email: email,
+                    peopleCount: peopleCount
+                }
+            })        
         }
     }
 
     const toggleClose = () => {
         setIsOpen(false)
-        navigate('/selecttables/')
-        // navigate('/createaccount')
-        // use this to navigate to the page where you select the table u want
+        navigate('/selecttables/', {
+            state: {
+                date: date,
+                name: name,
+                phoneNum: phoneNum,
+                email: email,
+                peopleCount: peopleCount
+            }
+        })   
+        // navigate('/selecttables/', {
+        //     state: {
+        //         date: date,
+        //         name: name,
+        //         phoneNum: phoneNum,
+        //         email: email,
+        //         peopleCount: peopleCount
+        //     }
+        // })
     }
 
     var { state } = useLocation()
@@ -159,16 +186,38 @@ const TableQuery1 = () => {
                     <div className='userTableDetails'>
                         <div className='inputLabel'>When?</div>
                         <div className='userTableInput'>
-                            <DateTimePicker selected={date} onChange={(e) => setDate(e)} value={date} />
+                            <DateTimePicker selected={date} onChange={(e) => {
+                                setDate(e)
+                                console.log(date)
+                                }} value={date} />
                         </div>
                     </div>
-
-                    <br/>
 
                     <div className='userTableDetails'>
                         <div className='inputLabel'>How many?</div>
                         <div className='userTableInput'>
-                            <input type='text' className='userTableInputField'></input>
+                            <input type='text' className='userTableInputField' onChange={(e) => setPeopleCount(e.target.value)}></input>
+                        </div>
+                    </div>
+
+                    <div className='userTableDetails'>
+                        <div className='inputLabel'>Name</div>
+                        <div className='userTableInput'>
+                            <input type='text' className='userTableInputField' onChange={(e) => setName(e.target.value)}></input>
+                        </div>
+                    </div>
+
+                    <div className='userTableDetails'>
+                        <div className='inputLabel'>Phone #</div>
+                        <div className='userTableInput'>
+                            <input type='text' className='userTableInputField' onChange={(e) => setPhoneNum(e.target.value)}></input>
+                        </div>
+                    </div>
+
+                    <div className='userTableDetails'>
+                        <div className='inputLabel'>Email</div>
+                        <div className='userTableInput'>
+                            <input type='text' className='userTableInputField' onChange={(e) => setEmail(e.target.value)}></input>
                         </div>
                     </div>
 

@@ -60,3 +60,12 @@
     vertical-align: middle;
     width: 90%;
 }
+
+.table-invalid {
+    background-color: red;
+    border: 1px solid maroon;
+    height: 80%;
+    margin: auto;
+    vertical-align: middle;
+    width: 90%;
+}
