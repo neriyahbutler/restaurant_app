@@ -1,12 +1,22 @@
+.cart-cell {
+    background-color: grey;
+    color: white;
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 0.5%;
+    padding: 0.5%;
+}
+
 .leftside {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     float: left;
     height: 90vh;
     width: 50%;
 }
 
 .rightside {
-    border: 1px solid blue;
+    background-color: lightgray;
+    /* border: 1px solid blue; */
     float: left;
     height: 90vh;
     width: 49%;
@@ -32,9 +42,12 @@
 }
 
 .table-option {
+    align-items: center;
     border: 1px solid black;
+    display: flex;
     height: 80%;
     margin: auto;
+    justify-content: center;
     vertical-align: middle;
     width: 90%;
 }
@@ -44,33 +57,65 @@
 }
 
 .table-non-option {
+    align-items: center;
     background-color: lightgrey;
     border: 1px solid black;
+    display: flex;
     height: 80%;
     margin: auto;
+    justify-content: center;
+    vertical-align: middle;
+    width: 90%;
+}
+
+.table-title {
+    font-size: 1.1em;
+}
+
+.table-combination {
+    align-items: center;
+    background-color: lightgreen;
+    border: 1px solid green;
+    display: flex;
+    height: 80%;
+    margin: auto;
+    justify-content: center;
     vertical-align: middle;
     width: 90%;
 }
 
 .table-selected {
+    align-items: center;
     background-color: lightskyblue;
     border: 1px solid blue;
+    display: flex;
     height: 80%;
     margin: auto;
+    justify-content: center;
     vertical-align: middle;
     width: 90%;
 }
 
 .table-invalid {
+    align-items: center;
     background-color: red;
     border: 1px solid maroon;
+    display: flex;
     height: 80%;
     margin: auto;
+    justify-content: center;
     vertical-align: middle;
     width: 90%;
 }
 
 .table-details {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 49%;
 }
+
+.test-fuck {
+    position: absolute;
+    top: 25%;
+    width: 50%;
+}
+

@@ -49,6 +49,8 @@ const SelectTables = () => {
                 console.log("Unavailable tables:", unavailableTables)
 
                 handleTableSize(tableOptions, peopleCountInput)
+                handleTableCombinations(tableOptions, peopleCountInput)
+
                 handleUnavailableTables(unavailableTables)
             })
         }
@@ -71,6 +73,38 @@ const SelectTables = () => {
             setSelectedTableDetails(data)
             handleTableStates(tableNumber)
         })
+    }
+
+    function handleTableCombinations(tableOptions, peopleCountInput) {
+        for (let i = 0; i < tableOptions.length; i++) {
+            var peopleCount = peopleCountInput
+            for (let j = 0; j < tableOptions.length; j++) {
+                if (peopleCountInput - (tableOptions[i].peopleSitting + tableOptions[j].peopleSitting) === 0) {
+                    handleCombinationHelper(i + 1)
+                    handleCombinationHelper(j + 1)
+                }
+            }
+        }
+    }
+
+    function handleCombinationHelper(tableNumber) {
+        if (tableNumber === 1) {
+            setTable1Select("table-combination")
+        } else if (tableNumber === 2) {
+            setTable2Select("table-combination")
+        } else if (tableNumber === 3) {
+            setTable3Select("table-combination")
+        } else if (tableNumber === 4) {
+            setTable4Select("table-combination")
+        } else if (tableNumber === 5) {
+            setTable5Select("table-combination")
+        } else if (tableNumber === 6) {
+            setTable6Select("table-combination")
+        } else if (tableNumber === 7) {
+            setTable7Select("table-combination")
+        } else {
+            setTable8Select("table-combination")
+        }
     }
 
     function handleTableSize(tableOptions, peopleCountInput) {
@@ -189,17 +223,19 @@ const SelectTables = () => {
 
     function submitCart() {
         if (selectedTables.count !== 0) {
-            const user_data = {
-                cart : selectedTables,
-                date: state.date,
-                name: state.name,
-                phoneNum: state.phoneNum,
-                email: state.email,
-                phoneCount: state.phoneCount
-            }
-
-            console.log("User is submitting the following json", user_data)
             // navigate to the payment page
+            navigate("/paymentpage", {
+                state: {
+                    tables : selectedTables,
+                    date: state.date,
+                    name: state.name,
+                    phoneNum: state.phoneNum,
+                    email: state.email,
+                    phoneCount: state.phoneCount,
+                    isLoggedIn: state.isLoggedIn,
+                    firstName: state.firstName
+                }
+            })
         }
     }
 
@@ -208,6 +244,7 @@ const SelectTables = () => {
         if (state !== null) {
             if (state.isLoggedIn === true) {
                 state.isLoggedIn = false
+                state.email = ""
                 setLogInOption("Sign In")
             }
             else {
@@ -307,21 +344,23 @@ const SelectTables = () => {
         </div>
         <div className='rightside'>
             <div className='table-details'>
-                <div>Table Details</div>
-                {selectedTableDetails !== null && (
-                    <div>
-                        {selectedTableDetails.table} holds {selectedTableDetails.peopleSitting} people
-                    </div>
-                    )
-                }
+                <div className='test-fuck'>
+                    <div className='table-details-info'><b className='table-title'>Table Details</b></div>
+                    {selectedTableDetails !== null && (
+                        <div className='table-details-info'>
+                            {selectedTableDetails.table} holds {selectedTableDetails.peopleSitting} people
+                        </div>
+                        )
+                    }
+                </div>
             </div>
             <div className='table-details'>
-                Tables in Cart:
+                <b className='table-title'>Tables in Cart:</b>
                 {selectedTables.map((table) => 
-                    <div>Table {table}</div>)}
+                    <div className='cart-cell'>Table {table}</div>)}
                 
                 <br />
-                <button onClick={submitCart}>Test</button>
+                <button onClick={submitCart}>Payment</button>
             </div>
         </div>
         </div>

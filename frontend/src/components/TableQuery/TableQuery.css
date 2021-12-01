@@ -77,7 +77,7 @@
 }
 
 .test2 {
-    background-image: url("https://assets.website-files.com/5d82284bd06ccc57c3a19ebc/5d823065708f0fd9d0a30de7_PeppaPig_Prod_1080x1080.jpg");
+    background-image: url("https://th.bing.com/th/id/R.3b4aa9f05558753eae1f070babb68fb1?rik=%2bDZHJRpGTr8D5w&riu=http%3a%2f%2fwww.publicdomainpictures.net%2fpictures%2f200000%2fvelka%2frestaurant-14744452374ck.jpg&ehk=HBjN5YzksHxHjH0PAhlucPL5y1%2fGlgrchGuwJK9xhNs%3d&risl=&pid=ImgRaw&r=0");
     background-size: cover;
     height: 90vh;
 }
@@ -93,6 +93,6 @@
     padding: 5%
 }
 
-/* .react-datepicker__month-container {
-    width: ;
-} */
+.userTableInput-error {
+    color: red;
+}

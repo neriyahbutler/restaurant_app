@@ -1,3 +1,6 @@
+global.TextEncoder = require('util').TextEncoder
+global.TextDecoder = require('util').TextDecoder
+
 const express = require("express")
 const cors = require('cors');
 const app = express()
@@ -24,4 +27,5 @@ app.use("/createaccount/", require("./routes/createAccountRouter"))
 app.use("/signin/", require("./routes/signinRouter"))
 app.use("/reservedtable/", require("./routes/reservedTablesRouter"))
 app.use("/selecttables/", require("./routes/selectTableRouter"))
+app.use("/paymentpage/", require("./routes/paymentPageRouter"))
 module.exports = app;

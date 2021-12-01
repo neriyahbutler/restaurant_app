@@ -7,7 +7,7 @@ import CreateAccount from './components/CreateAccount/CreateAccount';
 import ReservedTable from './components/ReservedTable/ReservedTable';
 import TableQuery from './components/TableQuery/TableQuery';
 import SelectTables from './components/SelectTables/SelectTables';
-// import PaymentPage from './components/PaymentPage/PaymentPage';
+import PaymentPage from './components/DummyPaymentPage/PaymentPage';
 
 import './App.css';
 
@@ -34,9 +34,9 @@ function App() {
           <Route exact path='/selecttables' element={<SelectTables/>}>
             <SelectTables />
           </Route>
-          {/* <Route exact path = '/paymentpage' elemnt = {<PaymentPage/>}>
+          <Route exact path = '/paymentpage' element = {<PaymentPage/>}>
             <PaymentPage/>
-          </Route> */}
+          </Route>
         </Routes>
       </Router>
     </div>

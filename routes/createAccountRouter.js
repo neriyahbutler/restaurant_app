@@ -30,7 +30,11 @@ router.post("/newaccount", async (req, res) => {
         const formInputSaved2 = await formInput2.save()
 
         console.log("Input uploaded to database")
-    } catch(err) {console.log(err.message)}
+        res.send({message: "Good!"})
+    } catch(err) {
+        console.log(err.message)
+        res.send({message: "Bad!"})
+    }
 })
 
 router.get("/", async (req, res) => {

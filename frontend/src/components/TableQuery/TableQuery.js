@@ -20,64 +20,58 @@ const TableQuery1 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isHoliday, setIsHoliday] = useState(false)
 
+    const [tableQueryError, setTableQueryError] = useState("")
+
     var { state } = useLocation()
     console.log(state)
 
     const navigate = useNavigate();
 
     const togglePopup = () => {
-        if (isOpen === false) {loadHoliday()}
-        if (isHoliday === true) {
-            console.log("Date chosen is a holiday")
-            setIsOpen(true);
-        } else {
-            setIsOpen(false)
-            if (isOpen === false) {
-                var isLoggedIn = false
-                var email = ""
-                var firstName = ""
-
-                if (state !== null) {
-                    isLoggedIn = state.isLoggedIn;
-                    email = state.email;
-                    firstName = state.firstName;
+        if (checkInput()) {
+            if (validateQueryInput()) {
+                if (isOpen === false) {
+                    loadHoliday()}
+                if (isHoliday === true) {
+                    setIsOpen(true);
                 }
-
-                navigate('/selecttables/', {
-                    state: {
-                        date: date,
-                        name: name,
-                        phoneNum: phoneNum,
-                        email: email,
-                        peopleCount: peopleCount,
-                        isLoggedIn: isLoggedIn,
-                        firstName: firstName
-                    }
-                })
+            } else {
+                setTableQueryError("Make sure your inputs are valid")
             }
+        } else {
+            setTableQueryError("Please fill in all the input fields")
         }
     }
 
     const toggleClose = () => {
         setIsOpen(false)
+
+        var temp_email = ""
+
+        if (state === null || state.email === "" || state.email === null) {
+            temp_email = email
+            console.log("state empty")
+        } else {
+            console.log("state not empty")
+            temp_email = state.email
+        }
+
         navigate('/selecttables/', {
             state: {
                 date: date,
                 name: name,
                 phoneNum: phoneNum,
-                email: email,
+                email: temp_email,
                 peopleCount: peopleCount
             }
         })   
-        // navigate('/selecttables/', {
-        //     state: {
-        //         date: date,
-        //         name: name,
-        //         phoneNum: phoneNum,
-        //         email: email,
-        //         peopleCount: peopleCount
-        //     }
-        // })
+    }
+
+    function checkInput() {
+        if (date === "" || name === "" || phoneNum === "" ||
+        email === "" || peopleCount === "") {
+            return false
+        } return true
     }
     
     function changeLoggedInStatus() {
@@ -85,6 +79,7 @@ const TableQuery1 = () => {
         if (state !== null) {
             if (state.isLoggedIn === true) {
                 state.isLoggedIn = false
+                state.email = ""
                 setLogInOption("Sign In")
             }
             else {
@@ -127,13 +122,63 @@ const TableQuery1 = () => {
                 if (data.isHoliday === true) {
                     console.log("Setting isHoliday to true")
                     setIsHoliday(true)
+                    setIsOpen(true)
                 } else {
                     console.log("Setting isHoliday to false")
                     setIsHoliday(false)
+                    setIsOpen(false)
+
+                    setIsOpen(false)
+                    if (isOpen === false) {
+                        var isLoggedIn = false
+                        var firstName = ""
+
+                        if (state !== null) {
+                            isLoggedIn = state.isLoggedIn;
+                            firstName = state.firstName;
+                        }
+
+                        var temp_email = ""
+
+                        if (state === null || state.email === "" || state.email === null) {
+                            temp_email = email
+                            console.log("state empty", email)
+                        } else {
+                            console.log("state not empty")
+                            temp_email = state.email
+                        }
+
+                        navigate('/selecttables/', {
+                            state: {
+                                date: date,
+                                name: name,
+                                phoneNum: phoneNum,
+                                email: temp_email,
+                                peopleCount: peopleCount,
+                                isLoggedIn: isLoggedIn,
+                                firstName: firstName
+                            }
+                        })
+                    }
                 }
             })
         }
-    } 
+    }
+
+    function validateQueryInput() {
+        if (/[a-zA-Z]/g.test(phoneNum)) {
+            console.log("Validation wasn't passed")
+            return false
+        } else if (email.indexOf("@") === -1) {
+            console.log("Validation wasn't passed")
+            return false
+        } else if (/[a-zA-Z]/g.test(peopleCount)) {
+            console.log("Validation wasn't passed")
+            return false
+        }
+        console.log("Validation was passed")
+        return true
+    }
 
     return (
         <div className='tablequery-container'>
@@ -233,6 +278,10 @@ const TableQuery1 = () => {
                         <div className='userTableInput'>
                             <input type='text' className='userTableInputField' onChange={(e) => setEmail(e.target.value)}></input>
                         </div>
+                    </div>
+
+                    <div className='userTableInput-error'>
+                            {tableQueryError}
                     </div>
 
                     <div className='userTableButton'>

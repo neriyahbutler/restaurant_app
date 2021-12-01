@@ -8,7 +8,8 @@ class CreateAccount extends React.Component {
 
         this.state = {
             fields : {},
-            errors: {}
+            errors: {},
+            createAccountStatus: ""
         }
     }
 
@@ -67,6 +68,7 @@ class CreateAccount extends React.Component {
             }
 
             axios.post("http://localhost:5000/createaccount/newaccount/", formInput)
+            this.setState({createAccountStatus: "Account successfully created!"})
         } else { console.log("Failed validation")}
     }
 
@@ -194,6 +196,7 @@ class CreateAccount extends React.Component {
                         <button className='createaccount-button' value='submit'>Create Account</button>
                     </div>
                 </form>
+                {this.state.createAccountStatus}
             </div>
         )
     }

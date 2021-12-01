@@ -19,9 +19,9 @@ router.post("/", async (req, res) => {
         }
         else {
             console.log("User account doesn't exists")
-            // return res.send.({
-            //     token: existingUser.id
-            // })
+            return res.send({
+                token: ""
+            })
         }
     } catch (err) {console.log(err.message)}
 })

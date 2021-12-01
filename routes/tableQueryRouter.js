@@ -11,6 +11,8 @@ router.post("/holidaycheck", async (req, res) => {
         const exact_date = day_input.substring(day_input.indexOf("-") + 1,
         day_input.indexOf("-") + 6);
 
+        console.log('the exact date was', exact_date)
+
         const holidayCheck = await holidayForm.findOne({holiday_date: String(exact_date)})
 
         if (holidayCheck['_doc'].holiday_date === exact_date) {
@@ -18,7 +20,10 @@ router.post("/holidaycheck", async (req, res) => {
         } else {
             res.send({isHoliday: false})
         }
-    } catch (err) {console.log(err.message)}
+    } catch (err) {
+        console.log(err.message)
+        res.send({isHoliday: false})
+    }
 })
 
 module.exports = router;

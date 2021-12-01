@@ -7,9 +7,13 @@ import './Signin.css';
 const Signin1 = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
     const [token, setToken] = useState("")
     const [isLoggedIn, setIsLoggedIn] = useState("")
     
+    const [emailError, setEmailError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
+
     const navigate = useNavigate();
 
     function handleValidation() {
@@ -52,9 +56,15 @@ const Signin1 = () => {
                     email: email
                 }})
                 setIsLoggedIn(true)
+            } else {
+                setPasswordError("Invalid email/password")
             }
         })
         } else {
+            if (email === "") {setEmailError("Please provide your email")}
+            else {setEmailError("")}
+            if (password === "") {setPasswordError("Please provide your password")}
+            else {setPasswordError("")}
             console.log("Validation failed!")
         }
     }
@@ -97,6 +107,9 @@ const Signin1 = () => {
                             onChange={(e) => setEmail(e.target.value)} />
                     </div>
 
+                    <div className='signin-error'>{emailError}</div>
+                    {/* <br /> */}
+
                     <div className = "input-group">
                         <label className='form-input' htmlFor = "password">Password</label>
                         <input
@@ -107,6 +120,8 @@ const Signin1 = () => {
                             onChange={(e) => setPassword(e.target.value)}/>
                     </div>
 
+                    <div className='signin-error'>{passwordError}</div>
+                    <br />
                     <button
                         type = "button"
                         value='submit'

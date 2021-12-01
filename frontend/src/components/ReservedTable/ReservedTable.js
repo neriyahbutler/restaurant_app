@@ -68,6 +68,7 @@ const ReservedTable = () => {
         if (state !== null) {
             if (state.isLoggedIn === true) {
                 state.isLoggedIn = false
+                state.email = ""
                 setLogInOption("Sign In")
             }
             else {
@@ -132,7 +133,23 @@ const ReservedTable = () => {
                         </div>
                     )
                 )
-                }
+            }
+
+            {state !== null && (
+                    state.isLoggedIn === false && (
+                        <div>
+                            Please login to see your history
+                        </div>
+                    )
+                )
+            }
+
+            {state === null && (
+                        <div>
+                            Please login to see your history
+                        </div>
+                )
+            }
 
             <div className='reserved-tables-display'>
                 <div className='reserved-tables-title'>Reserved Tables</div>
